@@ -1,0 +1,32 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-box">
+    <h2>Giriş Yap</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" formControlName="email" placeholder="Email adresinizi girin">
+        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="error">
+          Geçerli bir e-posta giriniz.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Şifre:</label>
+        <input id="password" type="password" formControlName="password" placeholder="Şifrenizi girin">
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="error">
+          Şifre zorunludur.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+    </form>
+
+    <p>Hesabınız yok mu? <a routerLink="/signup">Kayıt Ol</a></p>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>

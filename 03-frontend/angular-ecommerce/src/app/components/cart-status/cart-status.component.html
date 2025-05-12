@@ -1,0 +1,8 @@
+<div class="cart-container">
+    <a routerLink="/cart-details" class="cart-link">
+      <span class="cart-total">{{ totalPrice | currency:'USD' }}</span>
+      <span class="cart-quantity">{{ totalQuantity }}</span>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    </a>
+  </div>
+  

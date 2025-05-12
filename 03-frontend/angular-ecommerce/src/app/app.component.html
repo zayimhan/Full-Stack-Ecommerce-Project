@@ -1,0 +1,47 @@
+<!-- Mağaza (kullanıcı) tarafı -->
+<div class="page-wrapper" *ngIf="!isAdminRoute() && !isSellerDashboardRoute() && !isSellerOrderRoute() && !isSellerAddProductRoute()">
+  
+  <!-- MENU SIDEBAR-->
+  <aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a routerLink="/products">
+        <img src="assets/images/logo.png" alt="shopApp" class="img-responsive">
+      </a>
+    </div>
+    <app-product-category-menu></app-product-category-menu>
+  </aside>
+  <!-- END MENU SIDEBAR-->
+
+  <div class="page-container">
+    <!-- HEADER DESKTOP-->
+    <header class="header-desktop">
+      <div class="section-content section-content-p30">
+        <div class="container-fluid">
+          <div class="header-wrap">
+            <app-search></app-search>
+            <app-login-status></app-login-status>
+            <app-cart-status></app-cart-status>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END HEADER DESKTOP -->
+
+    <!-- MAIN CONTENT -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Admin ve seller özel sayfaları -->
+<div *ngIf="isAdminRoute() || isSellerDashboardRoute() || isSellerOrderRoute() || isSellerAddProductRoute()">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- FOOTER -->
+<footer *ngIf="!isAdminRoute() && !isSellerDashboardRoute() && !isSellerOrderRoute() && !isSellerAddProductRoute()">
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>

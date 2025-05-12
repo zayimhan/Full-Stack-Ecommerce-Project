@@ -1,0 +1,57 @@
+<h2 class="title">Kullanıcı Listesi</h2>
+
+<table *ngIf="users.length > 0; else noUsers" class="user-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Aktif mi?</th>
+      <th>Rol</th>
+      <th>İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.enabled ? '✅' : '❌' }}</td>
+
+      <td>
+        <ng-container *ngIf="editedUser?.id === user.id; else viewRole">
+          <select [(ngModel)]="user.selectedRole" class="dropdown">
+            <option *ngFor="let role of availableRoles" [value]="role">
+              {{ role }}
+            </option>
+          </select>
+        </ng-container>
+
+        <ng-template #viewRole>
+          <span class="role-label">{{ user.roles[0]?.name || '-' }}</span>
+        </ng-template>
+      </td>
+
+      <td>
+        <ng-container *ngIf="editedUser?.id === user.id; else editButtons">
+          <button class="btn btn-save" (click)="updateUserRole(user)">💾 Kaydet</button>
+          <button class="btn btn-cancel" (click)="cancelEdit()">İptal</button>
+        </ng-container>
+        <!-- Duruma göre gösterilen butonlar -->
+        <button *ngIf="user.enabled" class="btn btn-outline-danger btn-sm" (click)="deactivateUser(user.id)">
+          Deaktif Et
+        </button>
+
+        <button *ngIf="!user.enabled" class="btn btn-outline-success btn-sm" (click)="activateUser(user.id)">
+          Aktif Et
+        </button>
+
+        <ng-template #editButtons>
+          <button class="btn btn-edit" (click)="editRoles(user)">Rolleri Düzenle</button>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noUsers>
+  <p>Kullanıcı bulunamadı.</p>
+</ng-template>

@@ -1,0 +1,17 @@
+<!-- Admin paneli özel navbar -->
+<nav class="admin-navbar">
+  <span class="title">🛠 Admin Panel</span>
+  <div class="links">
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a routerLink="/admin/users">Kullanıcılar</a>
+    <a routerLink="/admin/products">Ürünler</a>
+    <a routerLink="/admin/orders">Siparişler</a>
+    <a routerLink="/admin/support">Destek</a>
+    <a (click)="logout()">Çıkış</a>
+  </div>
+</nav>
+
+<!-- Sayfa içeriği -->
+<div class="admin-content">
+  <router-outlet></router-outlet>
+</div>

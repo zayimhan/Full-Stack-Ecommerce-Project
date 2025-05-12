@@ -1,0 +1,37 @@
+<div class="product-container">
+  <h2 class="page-title">🛍️ Ürün Listesi</h2>
+
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Görsel</th>
+        <th>İsim</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-img" />
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.unitPrice | currency:'USD'}}
+        <td>
+        <td>{{ product.unitsInStock }}</td>
+        <td>
+          <button (click)="deactivateProduct(product.id)" class="btn btn-danger btn-sm">
+            Deactivate
+          </button>
+          <button *ngIf="!product.active" class="btn btn-success btn-sm" (click)="activateProduct(product.id)">
+  Aktif Et
+</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

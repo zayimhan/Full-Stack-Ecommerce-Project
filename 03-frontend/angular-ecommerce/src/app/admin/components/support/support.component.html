@@ -1,0 +1,32 @@
+<h2>📩 İptal Talepleri</h2>
+
+<div *ngIf="cancelRequests.length > 0">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Müşteri</th>
+        <th>Tarih</th>
+        <th>Tutar</th>
+        <th>Durum</th>
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let req of cancelRequests">
+        <td>{{ req.id }}</td>
+        <td>{{ req.customerEmail }}</td>
+        <td>{{ req.dateCreated | date: 'short' }}</td>
+        <td>{{ req.totalPrice | currency: 'TRY' }}</td>
+        <td>{{ req.status }}</td>
+        <td>
+          <button (click)="approveCancellation(req.id)" class="btn btn-danger btn-sm">İptali Onayla</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="cancelRequests.length === 0" class="alert alert-info">
+  Şu anda bekleyen iptal talebi bulunmamaktadır.
+</div>

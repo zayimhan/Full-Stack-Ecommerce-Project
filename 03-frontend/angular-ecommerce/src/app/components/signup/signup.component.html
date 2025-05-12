@@ -1,0 +1,42 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <h2>Kayıt Ol</h2>
+
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+
+      <input type="email"
+             name="email"
+             [(ngModel)]="user.email"
+             placeholder="Email"
+             required />
+
+      <input type="password"
+             name="password"
+             [(ngModel)]="user.password"
+             placeholder="Password"
+             required />
+
+      <select name="role"
+              [(ngModel)]="selectedRole"
+              required>
+        <option value="ROLE_CUSTOMER">Customer</option>
+        <option value="ROLE_SELLER">Seller</option>
+      </select>
+
+      <!-- ✅ Mağaza adı sadece satıcı seçilirse gösterilsin -->
+      <input *ngIf="selectedRole === 'ROLE_SELLER'"
+             type="text"
+             name="storeName"
+             [(ngModel)]="user.storeName"
+             placeholder="Mağaza Adı"
+             required />
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- ✅ Hata ve başarı mesajları -->
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  </div>
+</div>

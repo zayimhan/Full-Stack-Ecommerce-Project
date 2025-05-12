@@ -1,0 +1,52 @@
+/* Temel stil ayarları */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Yalnızca dikey kayma yapılmasını sağlamak */
+  }
+  
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Resimlerin düzgün sığması */
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Ürün resminin görünümünü iyileştirme */
+  .detail-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Kenarlık ve gölge eklemek */
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .border {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Responsive Düzenleme */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+    .col-md-5, .col-md-7 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .col-md-7 {
+      margin-top: 20px;
+    }
+  }
+  
+  

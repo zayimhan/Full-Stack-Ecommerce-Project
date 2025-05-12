@@ -1,0 +1,31 @@
+<h2>🧾 Sipariş Yönetimi</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Müşteri</th>
+      <th>Tarih</th>
+      <th>Toplam Tutar</th>
+      <th>Durum</th>
+      <th>İşlemler</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.customerEmail || '—' }}</td>
+      <td>{{ order.dateCreated | date: 'short' }}</td>
+      <td>{{ order.totalPrice | currency: 'TRY':'symbol':'1.2-2' }}</td>
+      <td>
+        <select [(ngModel)]="order.status">
+          <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="updateStatus(order)">Güncelle</button>
+        <button (click)="cancelOrder(order.id)" class="danger">İptal</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
